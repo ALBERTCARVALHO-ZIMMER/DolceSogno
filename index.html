@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolce Sogno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Kalnia:wght@100..700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Dolce Sogno</h1>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#products">Produtos</a>
+                <a href="#story">Nossa História</a>
+                <a href="#contact">Contato</a>
+                <a href="#cart" id="cart-btn">Carrinho (<span id="cart-count">0</span>)</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="home">
+        <section class="hero">
+            <div class="container">
+                <h2>Bem-vindo à Dolce Sogno</h2>
+                <p>Os brigadeiros e doces mais deliciosos e elegantes.</p>
+            </div>
+        </section>
+
+        <section id="products" class="products">
+            <div class="container">
+                <h2>Nossos Produtos</h2>
+                <div class="product" data-price="5.00">
+                    <img src="brigadeiro1.jpg" alt="Caixa de brigadeiros sortidos">
+                    <h3>Caixa de Brigadeiros</h3>
+                    <p>R$ 15,00</p>
+                    <button onclick="addToCart('Caixa de Brigadeiros', 15.00)">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product" data-price="6.00">
+                    <img src="brigadeiro2.jpg" alt="Brigadeiro Gourmet">
+                    <h3>Brigadeiro Gourmet</h3>
+                    <p>R$ 6,00</p>
+                    <button onclick="addToCart('Brigadeiro Gourmet', 6.00)">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product" data-price="7.00">
+                    <img src="brigadeiro3.jpg" alt="Brigadeiro de Nutella">
+                    <h3>Brigadeiro de Nutella</h3>
+                    <p>R$ 7,00</p>
+                    <button onclick="addToCart('Brigadeiro de Nutella', 7.00)">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product" data-price="5.50">
+                    <img src="brigadeiro4.jpg" alt="Brigadeiro de Café">
+                    <h3>Brigadeiro de Café</h3>
+                    <p>R$ 5,50</p>
+                    <button onclick="addToCart('Brigadeiro de Café', 5.50)">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product" data-price="6.50">
+                    <img src="brigadeiro5.jpg" alt="Brigadeiro de Morango">
+                    <h3>Brigadeiro de Morango</h3>
+                    <p>R$ 6,50</p>
+                    <button onclick="addToCart('Brigadeiro de Morango', 6.50)">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product" data-price="8.00">
+                    <img src="brigadeiro6.jpg" alt="Brigadeiro de Ouro">
+                    <h3>Brigadeiro de Ouro</h3>
+                    <p>R$ 8,00</p>
+                    <button onclick="addToCart('Brigadeiro de Ouro', 8.00)">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="story" class="story">
+            <div class="container">
+                <h2>Nossa História</h2>
+                <img src="familia.jpg" alt="Foto da Família" class="family-photo">
+                <p>
+                    A Dolce Sogno nasceu de um sonho simples e de muito amor. Karla, uma mãe trabalhadora, sempre buscou proporcionar algo especial para seus filhos, Albert e Evelyn. Em meio a desafios diários, Karla decidiu compartilhar sua paixão por brigadeiros e doces 50 e 70% cacau com o mundo. Com a ajuda de Albert e Evelyn, que se tornaram seus principais auxiliares e apoiadores, ela transformou essa paixão em um negócio familiar de sucesso. Cada brigadeiro é feito com amor e dedicação, representando a força e a união dessa família incrível. Hoje, a Dolce Sogno é mais do que uma marca; é um pedaço do coração de Karla e de seus filhos.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Contato</h2>
+                <p>Email: contato@dolcesogno.com.br</p>
+                <p>Telefone: (79) 99156-3635</p> <!-- Atualize com o número correto -->
+                <a href="https://wa.me/5579991348561" class="whatsapp-btn" target="_blank">Contato via WhatsApp</a> <!-- Atualize o número -->
+            </div>
+        </section>
+    </main>
+
+    <div id="cart" class="cart">
+        <div class="container">
+            <h2>Carrinho de Compras</h2>
+            <ul id="cart-items"></ul>
+            <p>Total: R$ <span id="cart-total">0.00</span></p>
+            <button onclick="showCheckoutForm()">Finalizar Compra</button>
+            <button onclick="clearCart()">Limpar Carrinho</button>
+        </div>
+    </div>
+
+    <div id="checkout-form" class="checkout-form">
+        <div class="container">
+            <h2>Finalizar Compra</h2>
+            <form onsubmit="handleCheckout(event)">
+                <label for="name">Nome Completo:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="phone">Telefone para Contato:</label>
+                <input type="text" id="phone" name="phone" required>
+                <label for="address">Endereço:</label>
+                <input type="text" id="address" name="address" required>
+                <button type="submit">Enviar Pedido</button>
+                <button type="button" onclick="hideCheckoutForm()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Dolce Sogno. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
